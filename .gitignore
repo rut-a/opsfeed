@@ -1,0 +1,18 @@
+# Terraform variable files
+*.tfvars
+!*.tfvars.example
+
+# Build artifacts
+.build/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Terraform
+**/.terraform/
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/terraform.tfvars
+*.tfplan

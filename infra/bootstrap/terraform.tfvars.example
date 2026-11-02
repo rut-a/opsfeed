@@ -1,0 +1,7 @@
+
+aws_region                  = "us-east-1"
+state_bucket_name           = "opsfeed-state-test-table"
+github_org                  = "rut-a"
+github_repo                 = "opsfeed"
+environments                = ["dev"]
+create_github_oidc_provider = true
