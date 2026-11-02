@@ -64,4 +64,26 @@ jobs:
       - name: Validate Terraform
         working-directory: infra/environments/dev
         run: terraform validate
+  
 
+  aws-oidc:
+    name: aws-oidc
+    runs-on: ubuntu-latest
+
+    # This role trusts pull-request workflows.
+    if: github.event_name == 'pull_request'
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_PLAN_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+          role-session-name: opsfeed-github-actions
+
+      - name: Verify AWS identity
+        run: aws sts get-caller-identity
